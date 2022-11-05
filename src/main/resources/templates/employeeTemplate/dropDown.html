@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DropDown Form Page</title>
+    <link th:href="@{/css/dropDown.css}" href="/css/dropDown.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 class="emp">Sign Up</h1>
+<div class="container">
+    <form method="post" th:object="${employeeDto}" th:action="@{'/employees/submit'}">
+        <input type="hidden" name="id" th:field="*{id}" />
+        <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Full Name" th:field="*{name}" />
+        </div>
+        <div>
+            <fieldset id="address" name="address" th:field="*{address}">
+                <legend>Address</legend>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="City" th:field="*{address.city}"><br><br>
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="State" th:field="*{address.state}"><br><br>
+            </fieldset>
+        </div>
+        <div>
+            <label for="dob">Date Of Birth</label>
+            <input id="dob" name="dob" type="text" placeholder="Date Of Birth" th:field="*{dob}" />
+        </div>
+        <div>
+            <label for="doj">Date Of Join</label>
+            <input id="doj" name="doj" type="text" placeholder="Date Of Join" th:field="*{doj}" />
+        </div>
+        <div>
+            <label for="department-id">Department</label>
+            <select id="department-id" name="department-id" th:field="*{department_id}">
+                <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.deptName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="projects">Projects</label>
+            <select id="projects" name="projects" th:field="*{project_list[0].project_id}">
+                <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.projectName}"></option>
+            </select>
+        </div>
+        <div>
+            <input id="submit" name="submit" type="submit" placeholder="Submit" />
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

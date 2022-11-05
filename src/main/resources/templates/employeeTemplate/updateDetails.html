@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Page</title>
+  <link th:href="@{/css/updateDetails.css}" href="/css/updateDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 class="emp">Update Your Details</h1>
+
+<div class="container" th:object="${thisEmployee}">
+  <form method="post" th:object="${employeeDto}" th:action="@{'/employees/submitUpdate'}">
+    <div th:object="${empId}">
+      <input id="id" placeholder="Id" type="hidden" name="id" th:value="${empId}" />
+    </div>
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Full Name" th:value="${thisEmployee.name}" th:name="name" />
+    </div>
+    <div>
+      <fieldset id="address" name="address">
+        <legend>Address</legend>
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" placeholder="City" th:value="${thisEmployee.address.city}" th:name="address.city"><br><br>
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" placeholder="State" th:value="${thisEmployee.address.state}" th:name="address.state"><br><br>
+      </fieldset>
+    </div>
+    <div>
+      <label for="dob">Date Of Birth</label>
+      <input id="dob" name="dob" type="text" placeholder="Date Of Birth" th:value="${thisEmployee.dob}" th:name="dob" />
+    </div>
+    <div>
+      <label for="doj">Date Of Join</label>
+      <input id="doj" name="doj" type="text" placeholder="Date Of Join" th:value="${thisEmployee.doj}" th:name="doj" />
+    </div>
+    <div>
+      <label for="department-id">Department_Id</label>
+      <select id="department-id" name="department-id" th:field="*{department_id}">
+        <option th:each="department : ${departments}" th:if="${department.deptName==thisEmployee.department.deptName}" th:text="${department.deptName}" th:value="${department.id}"></option>
+        <option th:each="department : ${departments}" th:if="${department.deptName!=thisEmployee.department.deptName}" th:text="${department.deptName}" th:value="${department.id}"></option>
+      </select>
+    </div>
+    <div>
+      <label for="projects">Projects</label>
+      <select id="projects" name="projects" th:field="*{project_list[0].project_id}">
+        <option th:each="project : ${projects}" th:if="${project.projectName==thisEmployee.projects[0].projectName}" th:text="${project.projectName}" th:value="${project.id}"></option>
+        <option th:each="project : ${projects}" th:if="${project.projectName!=thisEmployee.projects[0].projectName}" th:text="${project.projectName}" th:value="${project.id}"></option>
+      </select>
+    </div>
+    <div>
+      <input id="submit" name="submit" type="submit" placeholder="Submit" />
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+body{
+    background-color: #7B9E87;
+    color: #1F2041;
+    margin: 2rem;
+}
+
+table, th, td {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #5E747F;
+  color: #fff;
+  padding: 1rem;
+}
+
+td {
+  background-color: #DEE5E5;
+  padding: 1rem;
+}
+
+.emp{
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.update{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flexwrapper{
+    margin: 5rem auto;
+    text-align: center;
+}
+
+a{
+    background-color: #0D1F2D;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0.2rem 1rem;
+}
+
+#empName{
+    background-color: transparent;
+    color: black;
+    text-decoration: underline;
+    padding: auto;
+}
+
+.add{
+    padding: 0.7rem 2.5rem;
+    //transform: translateX(-150%);
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: #11151C;
+    color: #FFFFFF;
+    text-decoration: none;
+}

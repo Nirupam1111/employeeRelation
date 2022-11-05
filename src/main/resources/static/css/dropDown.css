@@ -1,0 +1,66 @@
+ *{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    //border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    background: #EFE9F4;
+    color: #171D1C;
+    font-size: 1.7rem;
+}
+h1{
+    text-align: center;
+    margin: 2rem auto 1rem auto;
+}
+form > *{
+  padding: 1rem;
+}
+#submit{
+    padding: 0.7rem 2.5rem;
+    float: right;
+    transform: translateX(-150%);
+    margin-top: 1rem;
+    cursor: pointer;
+    background: #171D1C;
+    color: #EFE9F4;
+}
+input, select{
+    padding: 0.5rem 15rem 0.5rem 1rem;
+    margin-left: 3rem;
+    float: right;
+    border: 1px solid #171D1C;
+    border-radius: 3px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input:active,
+input:focus{
+    border: none;
+    outline: none;
+    background-color: #000;
+    color: #fff;
+}
+fieldset {
+  background-color: transparent;
+  display: block;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 1px solid teal;
+}
+legend {
+  color: #202020;
+  padding: 5px 5px;
+}

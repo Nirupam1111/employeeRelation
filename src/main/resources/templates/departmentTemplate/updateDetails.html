@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Page</title>
+  <link th:href="@{/css/updateDetails.css}" href="/css/updateDetails.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 class="emp">Update Department Details</h1>
+
+<div class="container" th:object="${thisDepartment}">
+  <form method="post" th:object="${departmentDto}" th:action="@{'/departments/submitUpdate'}">
+    <div th:object="${deptId}">
+      <input id="id" placeholder="Id" type="hidden" name="id" th:value="${deptId}" />
+    </div>
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Name" th:value="${thisDepartment.deptName}" th:name="deptName" />
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input id="location" name="location" type="text" placeholder="Location" th:value="${thisDepartment.location}" th:name="location" />
+    </div>
+    <div>
+      <input id="submit" name="submit" type="submit" placeholder="Submit" />
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

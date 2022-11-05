@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 class="emp">Project Details</h1>
+
+<table style="width:100%">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Department</th>
+        <th>Update/Delete</th>
+    </tr>
+    <tr th:each="project: ${projects}">
+        <td th:text="${project.id}" />
+        <td th:text="${project.projectName}" />
+        <td th:text="${project.description}" />
+        <td th:text="${project.department.deptName}" />
+        <td class="update">
+            <a th:href="@{'/projects/update/'+${project.id}}">Update</a>
+            <a th:href="@{'/projects/delete/'+${project.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+<div class="flexwrapper">
+    <a th:href="@{'/projects/form'}" class="add" name="dropdown">Add Project</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1 class="emp">Employee Details</h1>
+
+    <table style="width:100%">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>DOJ</th>
+            <th>Department</th>
+            <th>Project</th>
+            <th>Update/Delete</th>
+        </tr>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.id}" />
+            <td><a id="empName" th:href="@{'/employees/about/'+${employee.id}}" th:text="${employee.name}"></a></td>
+            <td th:text="${employee.address.city} + ', ' + ${employee.address.state}" />
+            <td th:text="${employee.dob}" />
+            <td th:text="${employee.doj}" />
+            <td th:text="${employee.department.deptName}" />
+            <td>
+                <span th:each="project: ${employee.projects}">
+                    <span th:text="${project.projectName}"></span>,&nbsp;
+                </span>
+            </td>
+            <td class="update">
+                <a th:href="@{'/employees/update/'+${employee.id}}">Update</a>
+                <a th:href="@{'/employees/delete/'+${employee.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <div class="flexwrapper">
+        <a th:href="@{'/employees/signup'}" class="add" name="add">Add New User</a>
+    </div>
+    <div class="flexwrapper">
+        <a th:href="@{'/employees/dropdown'}" class="add" name="dropdown">Add DropDown User</a>
+    </div>
+</body>
+</html>

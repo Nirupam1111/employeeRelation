@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Front Page</title>
+    <link th:href="@{/css/frontpage.css}" href="/css/frontpage.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="menu"><iconify-icon icon="bx:menu-alt-left"></iconify-icon></div>
+        <div class="navbar">
+            <iconify-icon class="cross" icon="charm:circle-cross"></iconify-icon>
+            <div class="navitems">
+                <div class="item"><a href="/departments/about">Departments</a></div>
+                <div class="item"><a href="/projects/about">Projects</a></div>
+                <div class="item"><a href="/employees/about">Employees</a></div>
+            </div>
+        </div>
+            <div id="hero">
+                <header>
+                    <p class="subhead">add,update,delete</p>
+                    <h1>Employee Relations</h1>
+                </header>
+                <section>
+                    <iframe src='https://my.spline.design/untitled-9ce679c143178d47104d1acb61a51972/' height="100%" frameborder='0'></iframe>
+                </section>
+            </div>
+    </div>
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script th:src="@{/js/frontpage.js}" src="/js/frontpage.js"></script>
+</body>
+</html>

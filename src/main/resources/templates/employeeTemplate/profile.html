@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link th:href="@{/css/profile.css}" href="/css/profile.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container" th:object="${empId}">
+        <div class="left" th:object="${image}">
+            <a th:href="@{'/employees/about/delete/'+${empId}}"><iconify-icon class="trash" icon="fa6-solid:trash-arrow-up"></iconify-icon></a>
+            <div class="p-pic">
+                <img th:if="${image != null}" th:src="${'data:image/jpg;base64,'+image.profileImg}" alt="">
+<!--                <video autoplay loop th:if="${image != null}" th:src="${'data:video/mp4;base64,'+image.profileImg}"></video>-->
+<!--                <iframe th:if="${image != null}" th:src="${'data:application/pdf;base64,'+image.profileImg}" height="150%" width="150%"></iframe>-->
+            </div>
+        </div>
+
+        <div class="right"  th:object="${thisEmployee}">
+            <h1>Welcome to Your Profile</h1>
+            <h3>Name: <span th:text="${thisEmployee.name}"></span></h3>
+            <h3>Date Of Birth: <span th:text="${thisEmployee.dob}"></span></h3>
+            <h3>Date Of Joining: <span th:text="${thisEmployee.doj}"></span></h3>
+            <h3>City: <span th:text="${thisEmployee.address.city}"></span></h3>
+            <h3>State: <span th:text="${thisEmployee.address.state}"></span></h3>
+            <h3>Department: <span th:text="${thisEmployee.department.deptName}"></span></h3>
+            <h3>Project: <span th:text="${thisEmployee.projects[0].projectName}"></span></h3>
+
+            <div class="edit" th:object="${img}">
+                <iconify-icon class="icon" icon="fa-solid:user-edit"></iconify-icon>
+                <form method="post" th:action="@{'/employees/about/upload'}" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" th:field="*{id}" />
+                    <input type="hidden" id="employee_id" name="employee_id" th:value="${empId}" th:name="employee_id" />
+                    <input hidden type="file" id="img" name="img" accept="image/*" th:field="*{profileImg}" onchange="form.submit()" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script th:src="@{/js/profile.js}" href="/js/profile.js" rel="stylesheet"></script>
+</body>
+</html>
