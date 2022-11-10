@@ -2,6 +2,7 @@ package com.nirupam.modelMapper.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -9,8 +10,11 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(name = "id",dataType = "int",example = "1")
     private int id;
+    @ApiModelProperty(name = "city",dataType = "String",example = "Panskura")
     private String city;
+    @ApiModelProperty(name = "state",dataType = "String",example = "WB")
     private String state;
     @JsonIgnore
     @OneToOne(mappedBy = "address")

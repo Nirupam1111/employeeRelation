@@ -7,6 +7,11 @@ import com.nirupam.modelMapper.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,21 +33,23 @@ public class ImageService {
         MultipartFile file = imageDto.getProfileImg();
         Image img = new Image();
         try {
-            img.setProfileImg(Base64.getEncoder().encodeToString(file.getBytes()));
+            //img.setProfileImg(Base64.getEncoder().encodeToString(file.getBytes()));
 
             Path path = Paths.get("C:\\Users\\INDIA\\Downloads\\test");
             if (!Files.isDirectory(path))
                 Files.createDirectory(path);
             path = Paths.get(path + "\\" + file.getOriginalFilename());
             file.transferTo(path);
+
+            img.setProfileImg(path.toString());
             img.setName(file.getOriginalFilename());
             img.setSize(String.valueOf(file.getSize()));
             img.setType(file.getContentType());
+            img.setEmployee(employeeRepository.findById(imageDto.getEmployee_id()).get());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        img.setEmployee(employeeRepository.findById(imageDto.getEmployee_id()).get());
         imageRepository.save(img);
     }
 
@@ -50,11 +57,17 @@ public class ImageService {
         return imageRepository.findAll();
     }
 
-    public Image getImageByEmployeeId(int id) {
+    public String getImageByEmployeeId(int id) throws IOException {
         Optional<Image> img = imageRepository.findByEmployeeId(id);
-        if(img.isPresent())
-            return img.get();
-        return null;
+        File file = new File(img.get().getProfileImg());
+        BufferedImage bI = ImageIO.read(file);
+
+        ByteArrayOutputStream bToAry = new ByteArrayOutputStream();
+        ImageIO.write(bI, "jpg", bToAry);
+        byte[] data = bToAry.toByteArray();
+
+        String image = Base64.getEncoder().encodeToString(data);
+        return image;
     }
 
     public void updateImage(ImageDto image) {
@@ -62,21 +75,22 @@ public class ImageService {
         Image newImage = optionalImage.get();
         MultipartFile file = image.getProfileImg();
         try {
-            newImage.setProfileImg(Base64.getEncoder().encodeToString(file.getBytes()));
+            //newImage.setProfileImg(Base64.getEncoder().encodeToString(file.getBytes()));
 
             Path path = Paths.get("C:\\Users\\INDIA\\Downloads\\test\\" + file.getOriginalFilename());
             Path previousPath = Paths.get("C:\\Users\\INDIA\\Downloads\\test\\" +
                     imageRepository.findByEmployeeId(image.getEmployee_id()).get().getName());
             Files.delete(previousPath);
             file.transferTo(path);
+            newImage.setProfileImg(path.toString());
             newImage.setName(file.getOriginalFilename());
             newImage.setSize(String.valueOf(file.getSize()));
             newImage.setType(file.getContentType());
+            newImage.setEmployee(employeeRepository.findById(image.getEmployee_id()).get());
 
         }catch(Exception e){
             e.printStackTrace();
         }
-        newImage.setEmployee(employeeRepository.findById(image.getEmployee_id()).get());
         imageRepository.save(newImage);
     }
 

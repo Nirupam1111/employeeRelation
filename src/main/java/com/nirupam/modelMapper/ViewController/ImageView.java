@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,12 +38,18 @@ public class ImageView {
     }
 
     @GetMapping("/employees/about/{id}")
-    public String index(@PathVariable int id, Model model){
-        ImageDto img = new ImageDto();
+    public String index(@PathVariable int id, Model model) throws IOException {
+        ImageDto img = new ImageDto(); String image;
+
         model.addAttribute("img", img);
         model.addAttribute("empId", id);
         model.addAttribute("thisEmployee", employeeRepository.findById(id).get());
-        model.addAttribute("image", imageService.getImageByEmployeeId(id));
+        Optional<Image> optionalImage = imageRepository.findByEmployeeId(id);
+        if (optionalImage.isPresent())
+            image = imageService.getImageByEmployeeId(id);
+        else
+            image = null;
+        model.addAttribute("image", image);
         return "employeeTemplate/profile";
     }
 

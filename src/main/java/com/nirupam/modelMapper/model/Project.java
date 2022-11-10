@@ -1,6 +1,7 @@
 package com.nirupam.modelMapper.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,11 +11,15 @@ import java.util.List;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(name = "id",dataType = "int",example = "1")
     private int id;
+    @ApiModelProperty(name = "ProjectName",dataType = "String",example = "Frontend Development")
     private String projectName;
+    @ApiModelProperty(name = "description of project",dataType = "String",example = "Frontend Development with React")
     private String description;
     @ManyToOne
     @JoinColumn(name = "department_id")
+    @ApiModelProperty(name = "department",dataType = "Object",example = "{'id': 1, 'deptName': developer, 'location': kolkata}")
     private Department department;
     @JsonIgnore
     @ManyToMany(mappedBy = "projects")

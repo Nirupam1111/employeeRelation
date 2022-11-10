@@ -10,7 +10,9 @@
         <div class="left" th:object="${image}">
             <a th:href="@{'/employees/about/delete/'+${empId}}"><iconify-icon class="trash" icon="fa6-solid:trash-arrow-up"></iconify-icon></a>
             <div class="p-pic">
-                <img th:if="${image != null}" th:src="${'data:image/jpg;base64,'+image.profileImg}" alt="">
+                <img th:if="${image != null}" th:src="${'data:image/jpg;base64,'+image}" alt="">
+
+<!--                <img th:if="${image != null}" th:src="${'data:image/jpg;base64,'+image.profileImg}" alt="">-->
 <!--                <video autoplay loop th:if="${image != null}" th:src="${'data:video/mp4;base64,'+image.profileImg}"></video>-->
 <!--                <iframe th:if="${image != null}" th:src="${'data:application/pdf;base64,'+image.profileImg}" height="150%" width="150%"></iframe>-->
             </div>
