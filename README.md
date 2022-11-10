@@ -2,10 +2,11 @@
 ## CURD operation
 
 
-![2022-10-13 (1)](https://user-images.githubusercontent.com/92023838/195488899-5536d6d0-8603-4735-b619-75abb5e49c4c.png)
+![2022-11-10 (4)](https://user-images.githubusercontent.com/92023838/201119170-aa5ad947-9401-4cdc-85b2-e28a883a0120.png)
 
+![2022-11-10 (5)](https://user-images.githubusercontent.com/92023838/201119236-6723a712-38d7-4fa0-9a2d-2424491c68b1.png)
 
-![2022-10-13 (2)](https://user-images.githubusercontent.com/92023838/195488960-0795cfde-4fbf-483b-9cfb-c05ca50d2388.png)
+![2022-11-10 (6)](https://user-images.githubusercontent.com/92023838/201119276-3b671a16-3620-4a81-a9d4-25fa184a54db.png)
 
 
 ## Getting Started
